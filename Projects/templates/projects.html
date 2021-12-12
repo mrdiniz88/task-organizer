@@ -11,10 +11,9 @@
             <div class="card" style="width: 18rem">
                 <div class="card-body">
                     <h5 class="card-title">{{project.name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
                     <h6 style="display: inline;" class="card-subtitle mb-2 text-muted">Tarefas:</h6>
                     {% for task in tasks %}
-                        {% if task.project.name == project.name %}
+                        {% if task.project.id == project.id %}
                             <br>{{task}};
                         {% endif %}
                     {% endfor %}
@@ -30,7 +29,9 @@
                         <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                     </svg>
                     {% endif%}
-                    
+                    <br>
+                    <br>
+                    <a class="btn btn-info" href="{% url 'home:project_detail' project.id %}">Ver projeto</a>
 
                 </div>
             </div>

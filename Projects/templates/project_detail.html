@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Projeto | {{ project }}{% endblock title%}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <form>
+            {% csrf_token %}
+            <p>
+                <label>Nome do projeto</label>
+                <input class="form-control" type='text' value="{{project.name}}">
+            </p>
+            <p>
+                <label>Criado: {{ project.created_at }}</label>
+            </p>
+            <p>
+                <label >Tarefas</label><br>
+                {% for task in tasks %}
+                    <a href="{{ project.id }}/tasks_detail/{{task.name}}">{{ task }}</a>:
+                    {{ task.description }}<br>
+                {% endfor %}
+
+            </p>
+            <label>Concluido &nbsp; &nbsp;</label>
+            {% if project.finish %}
+                <input checked type="checkbox" name="concluido">
+            {% else %}
+                <input type="checkbox" name="concluido">
+            {% endif%}
+            <br>
+            <input type="submit" class="btn btn-success btn-lg" value="Salvar">
+        </form>
+    </div>
+
+
+{% endblock content%}
